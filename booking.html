@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>NEXUS Space — Booking Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img" />
+        <span class="logo__text">NEXUS <span class="logo__sub">Space</span></span>
+      </a>
+      <nav class="navbar__nav" aria-label="Navigasi utama">
+        <a href="index.html" class="nav__link">Dashboard</a>
+        <a href="catalog.html" class="nav__link">Ruangan</a>
+        <a href="booking.html" class="nav__link nav__link--active">Booking</a>
+      </nav>
+      <div class="navbar__actions">
+        <button class="btn-icon" id="darkModeToggle" aria-label="Toggle dark mode">
+          <i class="ti ti-moon" aria-hidden="true"></i>
+        </button>
+        <a href="booking.html" class="btn btn--primary">
+          <i class="ti ti-calendar-plus" aria-hidden="true"></i> Booking Ruangan
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb__link">Dashboard</a>
+          <i class="ti ti-chevron-right" aria-hidden="true"></i>
+          <span class="breadcrumb__current">Booking Ruangan</span>
+        </nav>
+        <h1 class="page-header__title">Formulir Pemesanan</h1>
+        <p class="page-header__desc">Isi detail pemesanan di bawah ini. Semua field bertanda <span class="required-mark">*</span> wajib diisi.</p>
+      </div>
+    </section>
+
+
+    <section class="booking-section">
+      <div class="container booking-layout">
+
+        <div class="booking-form-wrapper">
+          <form class="booking-form" id="bookingForm" novalidate>
+
+            <fieldset class="form-group">
+              <legend class="form-group__title">
+                <span class="form-group__num">1</span> Data Pemesan
+              </legend>
+
+              <div class="field">
+                <label class="field__label" for="fullName">
+                  Nama Lengkap <span class="required-mark">*</span>
+                </label>
+                <div class="field__input-wrap">
+                  <i class="ti ti-user field__icon" aria-hidden="true"></i>
+                  <input type="text" id="fullName" name="fullName" class="field__input"
+                    placeholder="Masukkan nama lengkap" required minlength="3" maxlength="60" autocomplete="name" />
+                </div>
+                <p class="field__error" id="fullName-error" role="alert"></p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="email">
+                    Email <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-mail field__icon" aria-hidden="true"></i>
+                    <input type="email" id="email" name="email" class="field__input"
+                      placeholder="nama@email.com" required autocomplete="email" />
+                  </div>
+                  <p class="field__error" id="email-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="phone">
+                    No. Telepon <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-phone field__icon" aria-hidden="true"></i>
+                    <input type="tel" id="phone" name="phone" class="field__input"
+                      placeholder="08xxxxxxxxxx" required pattern="^(\+62|0)[0-9]{9,12}$" autocomplete="tel" />
+                  </div>
+                  <p class="field__error" id="phone-error" role="alert"></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="company">Nama Perusahaan / Instansi</label>
+                <div class="field__input-wrap">
+                  <i class="ti ti-building field__icon" aria-hidden="true"></i>
+                  <input type="text" id="company" name="company" class="field__input"
+                    placeholder="Opsional" maxlength="80" autocomplete="organization" />
+                </div>
+              </div>
+            </fieldset>
+
+
+            <fieldset class="form-group">
+              <legend class="form-group__title">
+                <span class="form-group__num">2</span> Detail Pemesanan
+              </legend>
+
+              <div class="field">
+                <label class="field__label" for="roomSelect">
+                  Pilih Ruangan <span class="required-mark">*</span>
+                </label>
+                <div class="field__input-wrap">
+                  <i class="ti ti-door field__icon" aria-hidden="true"></i>
+                  <select id="roomSelect" name="roomSelect" class="field__input field__select" required>
+                    <option value="" disabled selected>-- Pilih ruangan --</option>
+                    <option value="R01">Ruang Dyna — Kapasitas 4 orang</option>
+                    <option value="R02">Ruang Mebius — Kapasitas 6 orang</option>
+                    <option value="R03">Ruang Cosmos — Kapasitas 8 orang</option>
+                    <option value="R04">Ruang Hikari — Kapasitas 10 orang</option>
+                    <option value="R05">Ruang Saga — Kapasitas 12 orang</option>
+                    <option value="R06">Ruang Ultra — Kapasitas 20 orang</option>
+                  </select>
+                </div>
+                <p class="field__error" id="roomSelect-error" role="alert"></p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="bookingDate">
+                    Tanggal <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-calendar field__icon" aria-hidden="true"></i>
+                    <input type="date" id="bookingDate" name="bookingDate" class="field__input" required />
+                  </div>
+                  <p class="field__error" id="bookingDate-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="startTime">
+                    Waktu Mulai <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-clock field__icon" aria-hidden="true"></i>
+                    <input type="time" id="startTime" name="startTime" class="field__input"
+                      required min="08:00" max="20:00" />
+                  </div>
+                  <p class="field__error" id="startTime-error" role="alert"></p>
+                </div>
+              </div>
+
+              <div class="field" id="visualizerField" style="display: none;">
+                <label class="field__label">Visualisasi Jadwal Ketersediaan</label>
+                <div class="time-grid" id="timeGridVisualizer"></div>
+                <div class="time-legend">
+                  <span class="time-legend-item"><span class="time-legend-dot time-legend-dot--available"></span>Tersedia</span>
+                  <span class="time-legend-item"><span class="time-legend-dot time-legend-dot--selected"></span>Pilihan Anda</span>
+                  <span class="time-legend-item"><span class="time-legend-dot time-legend-dot--booked"></span>Dipesan</span>
+                </div>
+                <p class="field__error" id="visualizer-error" role="alert"></p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="duration">
+                    Durasi (jam) <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-hourglass field__icon" aria-hidden="true"></i>
+                    <input type="number" id="duration" name="duration" class="field__input"
+                      placeholder="1 – 8" required min="1" max="8" />
+                  </div>
+                  <p class="field__hint">Maksimal 8 jam per sesi</p>
+                  <p class="field__error" id="duration-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="attendees">
+                    Jumlah Peserta <span class="required-mark">*</span>
+                  </label>
+                  <div class="field__input-wrap">
+                    <i class="ti ti-users field__icon" aria-hidden="true"></i>
+                    <input type="number" id="attendees" name="attendees" class="field__input"
+                      placeholder="Jumlah orang" required min="1" max="50" />
+                  </div>
+                  <p class="field__error" id="attendees-error" role="alert"></p>
+                </div>
+              </div>
+            </fieldset>
+
+
+            <fieldset class="form-group">
+              <legend class="form-group__title">
+                <span class="form-group__num">3</span> Kebutuhan Tambahan
+              </legend>
+
+              <div class="field">
+                <label class="field__label">Fasilitas Tambahan</label>
+                <div class="checkbox-grid">
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="proyektor" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-device-projector" aria-hidden="true"></i> Proyektor</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="whiteboard" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-writing" aria-hidden="true"></i> Whiteboard</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="soundsystem" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-speakerphone" aria-hidden="true"></i> Soundsystem</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="vc" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-video" aria-hidden="true"></i> Video Conference</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="catering" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-coffee" aria-hidden="true"></i> Katering</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="facilities" value="parking" />
+                    <span class="checkbox-item__box" aria-hidden="true"></span>
+                    <span class="checkbox-item__label"><i class="ti ti-car" aria-hidden="true"></i> Parkir VIP</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="notes">Catatan Tambahan</label>
+                <textarea id="notes" name="notes" class="field__input field__textarea"
+                  placeholder="Contoh: Mohon siapkan meja U-shape untuk 10 peserta..."
+                  maxlength="300" rows="3"></textarea>
+                <p class="field__hint">Maks. 300 karakter</p>
+              </div>
+            </fieldset>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary btn--lg btn--full" id="submitBtn">
+                <i class="ti ti-calendar-check" aria-hidden="true"></i>
+                Konfirmasi Pemesanan
+              </button>
+              <p class="form-submit__note">
+                <i class="ti ti-shield-check" aria-hidden="true"></i>
+                Data kamu aman dan tidak akan dibagikan ke pihak ketiga.
+              </p>
+            </div>
+
+          </form>
+        </div>
+
+
+        <aside class="booking-summary" aria-label="Ringkasan pemesanan">
+          <div class="summary-card">
+            <h2 class="summary-card__title">Ringkasan Pemesanan</h2>
+
+            <div class="summary-room" id="summaryRoom">
+              <div class="summary-room__placeholder">
+                <i class="ti ti-door" aria-hidden="true"></i>
+                <p>Pilih ruangan untuk melihat detail</p>
+              </div>
+            </div>
+
+            <div class="summary-details">
+              <div class="summary-row">
+                <span class="summary-row__label"><i class="ti ti-calendar" aria-hidden="true"></i> Tanggal</span>
+                <span class="summary-row__value" id="sumDate">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__label"><i class="ti ti-clock" aria-hidden="true"></i> Waktu</span>
+                <span class="summary-row__value" id="sumTime">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__label"><i class="ti ti-hourglass" aria-hidden="true"></i> Durasi</span>
+                <span class="summary-row__value" id="sumDuration">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__label"><i class="ti ti-users" aria-hidden="true"></i> Peserta</span>
+                <span class="summary-row__value" id="sumAttendees">—</span>
+              </div>
+            </div>
+
+            <div class="summary-price">
+              <div class="summary-price__row">
+                <span>Harga per jam</span>
+                <span id="pricePerHour">—</span>
+              </div>
+              <div class="summary-price__row">
+                <span>Durasi</span>
+                <span id="priceDuration">—</span>
+              </div>
+              <div class="summary-price__total">
+                <span>Total Estimasi</span>
+                <span id="priceTotal">—</span>
+              </div>
+            </div>
+
+            <div class="summary-info">
+              <i class="ti ti-info-circle" aria-hidden="true"></i>
+              <p>Pembayaran dilakukan saat check-in. Pembatalan gratis hingga 2 jam sebelum sesi dimulai.</p>
+            </div>
+          </div>
+
+          <div class="ops-card">
+            <h3 class="ops-card__title">
+              <i class="ti ti-clock" aria-hidden="true"></i> Jam Operasional
+            </h3>
+            <div class="ops-card__row">
+              <span>Senin – Jumat</span><strong>08.00 – 20.00</strong>
+            </div>
+            <div class="ops-card__row">
+              <span>Sabtu – Minggu</span><strong>09.00 – 18.00</strong>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <div class="notif-overlay" id="notifOverlay" aria-hidden="true">
+    <div class="notif-modal" role="dialog" aria-labelledby="notifTitle" aria-modal="true">
+      <div class="notif-modal__icon">
+        <i class="ti ti-circle-check" aria-hidden="true"></i>
+      </div>
+      <h2 class="notif-modal__title" id="notifTitle">Pemesanan Berhasil!</h2>
+      <p class="notif-modal__desc" id="notifDesc"></p>
+      <div class="notif-modal__detail" id="notifDetail"></div>
+      <div class="notif-modal__actions">
+        <a href="index.html" class="btn btn--outline">
+          <i class="ti ti-home" aria-hidden="true"></i> Kembali ke Dashboard
+        </a>
+        <button class="btn btn--primary" id="notifClose">
+          <i class="ti ti-plus" aria-hidden="true"></i> Booking Lagi
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img logo__img--sm" />
+        <div>
+          <p class="footer__name">NEXUS Space</p>
+          <p class="footer__tagline">Smart Meeting Room Booking</p>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">Dashboard</a>
+        <a href="catalog.html" class="footer__link">Ruangan</a>
+        <a href="booking.html" class="footer__link">Booking</a>
+      </div>
+      <div class="footer__info">
+        <p><i class="ti ti-map-pin" aria-hidden="true"></i> Jl. Sudirman No. 88, Jakarta Pusat</p>
+        <p><i class="ti ti-phone" aria-hidden="true"></i> (021) 5555-1234</p>
+        <p class="footer__copy">&copy; 2025 NEXUS Space. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

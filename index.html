@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>NEXUS Space — Smart Meeting Room Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img" />
+        <span class="logo__text">NEXUS <span class="logo__sub">Space</span></span>
+      </a>
+
+      <nav class="navbar__nav" aria-label="Navigasi utama">
+        <a href="index.html" class="nav__link nav__link--active">Dashboard</a>
+        <a href="catalog.html" class="nav__link">Ruangan</a>
+        <a href="booking.html" class="nav__link">Booking</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <button class="btn-icon" id="darkModeToggle" aria-label="Toggle dark mode">
+          <i class="ti ti-moon" aria-hidden="true"></i>
+        </button>
+        <a href="booking.html" class="btn btn--primary">
+          <i class="ti ti-calendar-plus" aria-hidden="true"></i> Booking Ruangan
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__tag">Smart Workspace Jakarta</span>
+        <h1 class="hero__title">Ruang Rapat Profesional,<br /><span class="text--accent">Booking dalam Hitungan Detik</span></h1>
+        <p class="hero__desc">
+          NEXUS Space menyediakan ruang rapat modern dengan teknologi terkini. Pilih ruangan, tentukan waktu, dan booking langsung dari sini — tanpa antre, tanpa telepon.
+        </p>
+        <div class="hero__cta">
+          <a href="booking.html" class="btn btn--primary btn--lg">
+            <i class="ti ti-calendar-plus" aria-hidden="true"></i> Booking Sekarang
+          </a>
+          <a href="catalog.html" class="btn btn--outline btn--lg">
+            <i class="ti ti-door" aria-hidden="true"></i> Lihat Ruangan
+          </a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>6</strong><span>Ruangan</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat">
+            <strong>50+</strong><span>Kapasitas Maks</span>
+          </div>
+          <div class="hero__stat-divider" aria-hidden="true"></div>
+          <div class="hero__stat">
+            <strong>24/7</strong><span>Booking Online</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__card-stack">
+          <div class="hcard hcard--back">
+            <div class="hcard__dot"></div>
+            <p class="hcard__room">Ruang Saga</p>
+            <p class="hcard__status hcard__status--busy">Sedang Digunakan</p>
+          </div>
+          <div class="hcard hcard--front">
+            <div class="hcard__header">
+              <span class="hcard__dot hcard__dot--green"></span>
+              <p class="hcard__room">Ruang Dyna</p>
+            </div>
+            <p class="hcard__status hcard__status--free">Tersedia</p>
+            <div class="hcard__meta">
+              <span><i class="ti ti-users"></i> 4 orang</span>
+              <span><i class="ti ti-clock"></i> 09.00 – 17.00</span>
+            </div>
+            <a href="booking.html" class="hcard__btn">Booking →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="stats" aria-labelledby="stats-heading">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="stats-heading">Status Hari Ini</h2>
+        <p class="section__date" id="todayDate"></p>
+      </div>
+
+      <div class="stats__grid">
+
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--green">
+            <i class="ti ti-door" aria-hidden="true"></i>
+          </div>
+          <div class="stat-card__body">
+            <p class="stat-card__label">Ruangan Tersedia</p>
+            <p class="stat-card__value" id="roomAvailable">—</p>
+          </div>
+          <meter id="meterAvailable" min="0" max="6" value="0" low="2" optimum="5"
+            aria-label="Ruangan tersedia">0 dari 6</meter>
+          <p class="stat-card__sub">dari 6 ruangan total</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--red">
+            <i class="ti ti-user-check" aria-hidden="true"></i>
+          </div>
+          <div class="stat-card__body">
+            <p class="stat-card__label">Sedang Digunakan</p>
+            <p class="stat-card__value" id="roomOccupied">—</p>
+          </div>
+          <meter id="meterOccupied" min="0" max="6" value="0" high="5" optimum="1"
+            aria-label="Ruangan terisi">0 dari 6</meter>
+          <p class="stat-card__sub">ruangan aktif saat ini</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--blue">
+            <i class="ti ti-clock-hour-4" aria-hidden="true"></i>
+          </div>
+          <div class="stat-card__body">
+            <p class="stat-card__label">Rata-rata Durasi</p>
+            <p class="stat-card__value">1.5 <span class="stat-card__unit">jam</span></p>
+          </div>
+          <p class="stat-card__sub">per sesi hari ini</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--purple">
+            <i class="ti ti-calendar-stats" aria-hidden="true"></i>
+          </div>
+          <div class="stat-card__body">
+            <p class="stat-card__label">Total Booking</p>
+            <p class="stat-card__value" id="totalBooking">—</p>
+          </div>
+          <p class="stat-card__sub">pemesanan masuk hari ini</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="room-preview" aria-labelledby="room-heading">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="room-heading">Ketersediaan Ruangan</h2>
+        <a href="catalog.html" class="link--subtle">
+          Lihat semua ruangan <i class="ti ti-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="room-legend" aria-label="Keterangan status">
+        <span class="legend-item legend-item--available">Tersedia</span>
+        <span class="legend-item legend-item--occupied">Digunakan</span>
+        <span class="legend-item legend-item--reserved">Direservasi</span>
+      </div>
+
+      <div class="room-grid" id="roomGrid" role="list" aria-label="Status ketersediaan ruangan"></div>
+    </div>
+  </section>
+
+
+  <section class="my-bookings" aria-labelledby="my-bookings-heading">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="my-bookings-heading">Pemesanan Saya</h2>
+        <span class="badge" id="myBookingsCount">0 Pemesanan</span>
+      </div>
+      <div class="my-bookings-list" id="myBookingsList" role="list" aria-label="Daftar pemesanan saya"></div>
+    </div>
+  </section>
+
+  <section class="activity" aria-labelledby="activity-heading">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="activity-heading">Aktivitas Pemesanan Terbaru</h2>
+        <span class="badge badge--live">
+          <span class="badge__dot" aria-hidden="true"></span> Live
+        </span>
+      </div>
+
+      <ul class="activity-list" id="activityList" aria-label="Log pemesanan terbaru"></ul>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img logo__img--sm" />
+        <div>
+          <p class="footer__name">NEXUS Space</p>
+          <p class="footer__tagline">Smart Meeting Room Booking</p>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">Dashboard</a>
+        <a href="catalog.html" class="footer__link">Ruangan</a>
+        <a href="booking.html" class="footer__link">Booking</a>
+      </div>
+      <div class="footer__info">
+        <p><i class="ti ti-map-pin" aria-hidden="true"></i> Jl. Sudirman No. 88, Jakarta Pusat</p>
+        <p><i class="ti ti-phone" aria-hidden="true"></i> (021) 5555-1234</p>
+        <p class="footer__copy">&copy; 2025 NEXUS Space. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CUSTOM CONFIRMATION MODAL -->
+  <div class="confirm-overlay" id="confirmOverlay" aria-hidden="true">
+    <div class="confirm-modal" role="dialog" aria-labelledby="confirmTitle" aria-modal="true">
+      <div class="confirm-modal__icon">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+      </div>
+      <h2 class="confirm-modal__title" id="confirmTitle">Batalkan Pemesanan?</h2>
+      <p class="confirm-modal__desc">Tindakan ini akan menghapus reservasi Anda secara permanen. Apakah Anda yakin?</p>
+      <div class="confirm-modal__actions">
+        <button class="btn btn--outline" id="confirmCancelBtn">Kembali</button>
+        <button class="btn btn--danger" id="confirmYesBtn">Ya, Batalkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

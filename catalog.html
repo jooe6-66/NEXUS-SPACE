@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <title>NEXUS Space — Katalog Ruangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/catalog.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img" />
+        <span class="logo__text">NEXUS <span class="logo__sub">Space</span></span>
+      </a>
+      <nav class="navbar__nav" aria-label="Navigasi utama">
+        <a href="index.html" class="nav__link">Dashboard</a>
+        <a href="catalog.html" class="nav__link nav__link--active">Ruangan</a>
+        <a href="booking.html" class="nav__link">Booking</a>
+      </nav>
+      <div class="navbar__actions">
+        <button class="btn-icon" id="darkModeToggle" aria-label="Toggle dark mode">
+          <i class="ti ti-moon" aria-hidden="true"></i>
+        </button>
+        <a href="booking.html" class="btn btn--primary">
+          <i class="ti ti-calendar-plus" aria-hidden="true"></i> Booking Ruangan
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb__link">Dashboard</a>
+          <i class="ti ti-chevron-right" aria-hidden="true"></i>
+          <span class="breadcrumb__current">Katalog Ruangan</span>
+        </nav>
+        <h1 class="page-header__title">Katalog Ruangan</h1>
+        <p class="page-header__desc">6 ruangan tersedia dengan berbagai kapasitas dan fasilitas untuk kebutuhan rapat kamu.</p>
+      </div>
+    </section>
+
+
+    <section class="filter-bar">
+      <div class="container filter-bar__inner">
+
+        <div class="filter-search">
+          <i class="ti ti-search filter-search__icon" aria-hidden="true"></i>
+          <input
+            type="search"
+            id="searchInput"
+            class="filter-search__input"
+            placeholder="Cari nama ruangan..."
+            aria-label="Cari ruangan"
+          />
+        </div>
+
+        <div class="filter-tabs" role="group" aria-label="Filter status ruangan">
+          <button class="filter-tab filter-tab--active" data-filter="all">Semua</button>
+          <button class="filter-tab" data-filter="available">Tersedia</button>
+          <button class="filter-tab" data-filter="occupied">Digunakan</button>
+          <button class="filter-tab" data-filter="reserved">Direservasi</button>
+        </div>
+
+        <div class="filter-capacity">
+          <label class="filter-capacity__label" for="capacityFilter">
+            <i class="ti ti-users" aria-hidden="true"></i> Kapasitas:
+          </label>
+          <select id="capacityFilter" class="filter-capacity__select" aria-label="Filter kapasitas">
+            <option value="all">Semua</option>
+            <option value="small">1 – 6 orang</option>
+            <option value="medium">7 – 12 orang</option>
+            <option value="large">13+ orang</option>
+          </select>
+        </div>
+
+        <p class="filter-count" id="filterCount" aria-live="polite"></p>
+
+      </div>
+    </section>
+
+
+    <section class="catalog-section">
+      <div class="container">
+
+        <div class="catalog-grid" id="catalogGrid" role="list" aria-label="Daftar ruangan"></div>
+
+        <div class="catalog-empty" id="catalogEmpty" aria-hidden="true">
+          <i class="ti ti-search-off" aria-hidden="true"></i>
+          <p>Tidak ada ruangan yang cocok dengan filter kamu.</p>
+          <button class="btn btn--outline" id="resetFilter">Reset Filter</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="room-modal" role="dialog" aria-labelledby="modalRoomName" aria-modal="true">
+
+      <div class="room-modal__header">
+        <div>
+          <p class="room-modal__id" id="modalRoomId"></p>
+          <h2 class="room-modal__name" id="modalRoomName"></h2>
+        </div>
+        <button class="btn-icon modal-close" id="modalClose" aria-label="Tutup detail ruangan">
+          <i class="ti ti-x" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="room-modal__body">
+
+        <div class="room-modal__photo" id="modalPhoto">
+          <div class="room-modal__photo-placeholder">
+            <i class="ti ti-door" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="room-modal__info">
+
+          <div class="modal-meta-grid" id="modalMeta"></div>
+
+          <div class="modal-section">
+            <h3 class="modal-section__title">Fasilitas</h3>
+            <ul class="modal-facilities" id="modalFacilities"></ul>
+          </div>
+
+          <div class="modal-section">
+            <h3 class="modal-section__title">Harga Sewa</h3>
+            <div class="modal-pricing" id="modalPricing"></div>
+          </div>
+
+          <div class="modal-actions" id="modalActions"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="images/logo.png" alt="NEXUS Space" class="logo__img logo__img--sm" />
+        <div>
+          <p class="footer__name">NEXUS Space</p>
+          <p class="footer__tagline">Smart Meeting Room Booking</p>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">Dashboard</a>
+        <a href="catalog.html" class="footer__link">Ruangan</a>
+        <a href="booking.html" class="footer__link">Booking</a>
+      </div>
+      <div class="footer__info">
+        <p><i class="ti ti-map-pin" aria-hidden="true"></i> Jl. Sudirman No. 88, Jakarta Pusat</p>
+        <p><i class="ti ti-phone" aria-hidden="true"></i> (021) 5555-1234</p>
+        <p class="footer__copy">&copy; 2025 NEXUS Space. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>
